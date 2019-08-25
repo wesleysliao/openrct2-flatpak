@@ -1,0 +1,66 @@
+{
+    "app-id": "org.openrct2.OpenRCT2",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "18.08",
+    "sdk": "org.freedesktop.Sdk",
+    "command": "openrct2",
+    "finish-args": [
+		"--socket=x11",
+		"--share=ipc",
+		"--share=network",
+		"--device=dri",
+		"--socket=pulseaudio",
+		"--persist=~/Documents/rct2/"
+    ],
+    "modules": [
+	{
+	    "name": "jansson",
+	    "buildsystem": "cmake",
+	    
+	    "sources":[
+		{
+		    "type": "git",
+		    "url": "https://github.com/akheron/jansson.git"
+
+		}
+	    ]
+	},
+
+	{
+	    "name": "libzip",
+	    "buildsystem": "cmake",
+	    
+	    "sources":[
+		{
+		    "type": "git",
+		    "url": "https://github.com/nih-at/libzip.git"
+
+		}
+	    ]
+	},
+
+	{
+	    "name": "openrct2",
+	    "buildsystem": "simple",
+	    "build-commands": [
+		"mkdir build",
+		"cmake -S . -B build",
+		"make -j 8 -C ./build",
+		"cp -r ./data/ ./build/data/",
+		"make -j 8 -C ./build g2 && mv ./build/g2.dat ./build/data/g2.dat",
+		"install -D ./build/openrct2 /app/bin/openrct2",
+		"install -D ./build/data/g2.dat /app/bin/data/g2.dat",
+		"install -D ./build/data/language/en-US.txt /app/bin/data/language/en-US.txt",
+		"install ./build/data/language/* /app/bin/data/language/"
+	    ],
+	    "sources":[
+		{
+		    "type": "git",
+		    "url": "https://github.com/OpenRCT2/OpenRCT2.git"
+
+		}
+	    ]
+
+	}
+    ]
+}
