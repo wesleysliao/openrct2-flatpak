@@ -4,6 +4,7 @@
     "runtime-version": "18.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "openrct2",
+    	"rename-icon": "openrct2",
     "finish-args": [
 		"--socket=x11",
 		"--share=ipc",
@@ -130,8 +131,22 @@
 		"install ./rct2ww/scenery_group/* /app/bin/data/object/rct2ww/scenery_group/",
 		"install ./rct2ww/scenery_large/* /app/bin/data/object/rct2ww/scenery_large/",
 		"install ./rct2ww/scenery_small/* /app/bin/data/object/rct2ww/scenery_small/",
-		"install ./rct2ww/scenery_wall/* /app/bin/data/object/rct2ww/scenery_wall/"
+		"install ./rct2ww/scenery_wall/* /app/bin/data/object/rct2ww/scenery_wall/",
 
+		"install -Dm644 ./resources/logo/icon_x4.png /app/share/icons/hicolor/4x4/apps/openrct2.png",
+		"install -Dm644 ./resources/logo/icon_x8.png /app/share/icons/hicolor/8x8/apps/openrct2.png",
+		"install -Dm644 ./resources/logo/icon_x16.png /app/share/icons/hicolor/16x16/apps/openrct2.png",
+		"install -Dm644 ./resources/logo/icon_x24.png /app/share/icons/hicolor/24x24/apps/openrct2.png",
+		"install -Dm644 ./resources/logo/icon_x32.png /app/share/icons/hicolor/32x32/apps/openrct2.png",
+		"install -Dm644 ./resources/logo/icon_x40.png /app/share/icons/hicolor/40x40/apps/openrct2.png",
+		"install -Dm644 ./resources/logo/icon_x48.png /app/share/icons/hicolor/48x48/apps/openrct2.png",
+		"install -Dm644 ./resources/logo/icon_x64.png /app/share/icons/hicolor/64x64/apps/openrct2.png",
+		"install -Dm644 ./resources/logo/icon_x96.png /app/share/icons/hicolor/96x96/apps/openrct2.png",
+		"install -Dm644 ./resources/logo/icon_x128.png /app/share/icons/hicolor/128x128/apps/openrct2.png",
+		"install -Dm644 ./resources/logo/icon_x256.png /app/share/icons/hicolor/256x256/apps/openrct2.png",
+		"install -Dm644 ./resources/logo/icon_x512.png /app/share/icons/hicolor/512x512/apps/openrct2.png",
+
+		"install -Dm644 ./distribution/linux/openrct2.desktop /app/share/applications/org.openrct2.OpenRCT2.desktop"
 	    ],
 	    "sources":[
 		{
