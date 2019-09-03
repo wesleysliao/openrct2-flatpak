@@ -10,7 +10,7 @@
 		"--share=network",
 		"--device=dri",
 		"--socket=pulseaudio",
-		"--persist=~/Documents/rct2/"
+		"--filesystem=home"
     ],
     "modules": [
 	{
@@ -21,7 +21,6 @@
 		{
 		    "type": "git",
 		    "url": "https://github.com/akheron/jansson.git"
-
 		}
 	    ]
 	},
@@ -34,7 +33,6 @@
 		{
 		    "type": "git",
 		    "url": "https://github.com/nih-at/libzip.git"
-
 		}
 	    ]
 	},
@@ -44,20 +42,115 @@
 	    "buildsystem": "simple",
 	    "build-commands": [
 		"mkdir build",
-		"cmake -S . -B build",
-		"make -j 8 -C ./build",
+		"cmake -S . -B build -DCMAKE_BUILD_TYPE=RELEASE",
+		"make -j8 -C ./build",
 		"cp -r ./data/ ./build/data/",
-		"make -j 8 -C ./build g2 && mv ./build/g2.dat ./build/data/g2.dat",
+		"make -j8 -C ./build g2 && mv ./build/g2.dat ./build/data/g2.dat",
+
 		"install -D ./build/openrct2 /app/bin/openrct2",
+
 		"install -D ./build/data/g2.dat /app/bin/data/g2.dat",
+
 		"install -D ./build/data/language/en-US.txt /app/bin/data/language/en-US.txt",
-		"install ./build/data/language/* /app/bin/data/language/"
+		"install ./build/data/language/* /app/bin/data/language/",
+
+		"install -D ./build/data/shaders/applypalette.frag /app/bin/data/shaders/applypalette.frag",
+		"install ./build/data/shaders/* /app/bin/data/shaders/",
+
+		"install -D ./openrct2.parkseq /app/bin/data/title/openrct2.parkseq",
+		"install -D ./rct1.parkseq /app/bin/data/title/rct1.parkseq",
+		"install -D ./rct1aa.parkseq /app/bin/data/title/rct1aa.parkseq",
+		"install -D ./rct1aall.parkseq /app/bin/data/title/rct1aall.parkseq",
+		"install -D ./rct2.parkseq /app/bin/data/title/rct2.parkseq",
+
+		"install -D ./official/station/openrct2.station.noentrance.json /app/bin/data/object/official/station/openrct2.station.noentrance.json",
+		"install -D ./official/station/openrct2.station.noplatformnoentrance.json /app/bin/data/object/official/station/openrct2.station.noplatformnoentrance.json",
+		"install -D ./official/terrain/openrct2.terrain.void.parkobj /app/bin/data/object/official/terrain/openrct2.terrain.void.parkobj",
+
+		"install -D ./rct1/terrain_edge/rct1.aa.edge.grey.parkobj /app/bin/data/object/rct1/terrain_edge/rct1.aa.edge.grey.parkobj",
+		"install ./rct1/terrain_edge/* /app/bin/data/object/rct1/terrain_edge/",
+		"install -D ./rct1/terrain_surface/rct1.aa.surface.roofred.parkobj /app/bin/data/object/rct1/terrain_surface/rct1.aa.surface.roofred.parkobj",
+		"install ./rct1/terrain_surface/* /app/bin/data/object/rct1/terrain_surface/",
+
+		"install -D ./rct2/footpath/rct2.pathash.json /app/bin/data/object/rct2/footpath/rct2.pathash.json",
+		"install -D ./rct2/footpath_banner/rct2.bn1.json /app/bin/data/object/rct2/footpath_banner/rct2.bn1.json",
+		"install -D ./rct2/footpath_item/rct2.bench1.json /app/bin/data/object/rct2/footpath_item/rct2.bench1.json",
+		"install -D ./rct2/park_entrance/rct2.pkemm.json /app/bin/data/object/rct2/park_enterance/rct2.pkemm.json",
+		"install -D ./rct2/ride/rct2.4x4.json /app/bin/data/object/rct2/ride/rct2.4x4.json",
+		"install -D ./rct2/scenery_group/rct2.scgabstr.json /app/bin/data/object/rct2/scenery_group/rct2.scgabstr.json",
+		"install -D ./rct2/scenery_large/rct2.badrack.json /app/bin/data/object/rct2/scenery_large/rct2.badrack.json",
+		"install -D ./rct2/scenery_small/rct2.allsort1.json /app/bin/data/object/rct2/scenery_small/rct2.allsort1.json",
+		"install -D ./rct2/scenery_wall/rct2.wallbadm.json /app/bin/data/object/rct2/scenery_wall/rct2.wallbadm.json",
+		"install -D ./rct2/station/rct2.station.abstract.json /app/bin/data/object/rct2/station/rct2.station.abstract.json",
+		"install -D ./rct2/terrain_edge/rct2.edge.ice.json /app/bin/data/object/rct2/terrain_edge/rct2.edge.ice.json",
+		"install -D ./rct2/terrain_surface/rct2.surface.chequerboard.json /app/bin/data/object/rct2/terrain_surface/rct2.surface.chequerboard.json",
+		"install -D ./rct2/water/rct2.wtrcyan.json /app/bin/data/object/rct2/water/rct2.wtrcyan.json",
+
+		"install ./rct2/footpath/* /app/bin/data/object/rct2/footpath/",
+		"install ./rct2/footpath_banner/* /app/bin/data/object/rct2/footpath_banner/",
+		"install ./rct2/footpath_item/* /app/bin/data/object/rct2/footpath_item/",
+		"install ./rct2/park_entrance/* /app/bin/data/object/rct2/park_enterance/",
+		"install ./rct2/ride/* /app/bin/data/object/rct2/ride/",
+		"install ./rct2/scenery_group/* /app/bin/data/object/rct2/scenery_group/",
+		"install ./rct2/scenery_large/* /app/bin/data/object/rct2/scenery_large/",
+		"install ./rct2/scenery_small/* /app/bin/data/object/rct2/scenery_small/",
+		"install ./rct2/scenery_wall/* /app/bin/data/object/rct2/scenery_wall/",
+		"install ./rct2/station/* /app/bin/data/object/rct2/station/",
+		"install ./rct2/terrain_edge/* /app/bin/data/object/rct2/terrain_edge/",
+		"install ./rct2/terrain_surface/* /app/bin/data/object/rct2/terrain_surface/",
+		"install ./rct2/water/* /app/bin/data/object/rct2/water/",
+
+		"install -D ./rct2tt/footpath/rct2.tt.1920path.json /app/bin/data/object/rct2tt/footpath/rct2.tt.1920path.json",
+		"install -D ./rct2tt/footpath_item/rct2.tt.firhydrt.json /app/bin/data/object/rct2tt/footpath_item/rct2.tt.firhydrt.json",
+		"install -D ./rct2tt/park_entrance/rct2.tt.1920sent.json /app/bin/data/object/rct2tt/park_enterance/rct2.tt.1920sent.json",
+		"install -D ./rct2tt/ride/rct2.tt.1920racr.json /app/bin/data/object/rct2tt/ride/rct2.tt.1920racr.json",
+		"install -D ./rct2tt/scenery_group/rct2.tt.scg1920s.json /app/bin/data/object/rct2tt/scenery_group/rct2.tt.scg1920s.json",
+		"install -D ./rct2tt/scenery_large/rct2.tt.4x4diner.json /app/bin/data/object/rct2tt/scenery_large/rct2.tt.4x4diner.json",
+		"install -D ./rct2tt/scenery_small/rct2.tt.1920slmp.json /app/bin/data/object/rct2tt/scenery_small/rct2.tt.1920slmp.json",
+		"install -D ./rct2tt/scenery_wall/rct2.tt.jailxx19.json /app/bin/data/object/rct2tt/scenery_wall/rct2.tt.jailxx19.json",
+
+		"install ./rct2tt/footpath/* /app/bin/data/object/rct2tt/footpath/",
+		"install ./rct2tt/footpath_item/* /app/bin/data/object/rct2tt/footpath_item/",
+		"install ./rct2tt/park_entrance/* /app/bin/data/object/rct2tt/park_enterance/",
+		"install ./rct2tt/ride/* /app/bin/data/object/rct2tt/ride/",
+		"install ./rct2tt/scenery_group/* /app/bin/data/object/rct2tt/scenery_group/",
+		"install ./rct2tt/scenery_large/* /app/bin/data/object/rct2tt/scenery_large/",
+		"install ./rct2tt/scenery_small/* /app/bin/data/object/rct2tt/scenery_small/",
+		"install ./rct2tt/scenery_wall/* /app/bin/data/object/rct2tt/scenery_wall/",
+
+		"install -D ./rct2ww/park_entrance/rct2.ww.africent.json /app/bin/data/object/rct2ww/park_enterance/rct2.ww.africent.json",
+		"install -D ./rct2ww/ride/rct2.ww.anaconda.json /app/bin/data/object/rct2ww/ride/rct2.ww.anaconda.json",
+		"install -D ./rct2ww/scenery_group/rct2.ww.scgafric.json /app/bin/data/object/rct2ww/scenery_group/rct2.ww.scgafric.json",
+		"install -D ./rct2ww/scenery_large/rct2.ww.1x2abr01.json /app/bin/data/object/rct2ww/scenery_large/rct2.ww.1x2abr01.json",
+		"install -D ./rct2ww/scenery_small/rct2.ww.1x1atre2.json /app/bin/data/object/rct2ww/scenery_small/rct2.ww.1x1atre2.json",
+		"install -D ./rct2ww/scenery_wall/rct2.ww.tmarch1.json /app/bin/data/object/rct2ww/scenery_wall/rct2.ww.tmarch1.json",
+
+		"install ./rct2ww/park_entrance/* /app/bin/data/object/rct2ww/park_enterance/",
+		"install ./rct2ww/ride/* /app/bin/data/object/rct2ww/ride/",
+		"install ./rct2ww/scenery_group/* /app/bin/data/object/rct2ww/scenery_group/",
+		"install ./rct2ww/scenery_large/* /app/bin/data/object/rct2ww/scenery_large/",
+		"install ./rct2ww/scenery_small/* /app/bin/data/object/rct2ww/scenery_small/",
+		"install ./rct2ww/scenery_wall/* /app/bin/data/object/rct2ww/scenery_wall/"
+
 	    ],
 	    "sources":[
 		{
 		    "type": "git",
 		    "url": "https://github.com/OpenRCT2/OpenRCT2.git"
 
+		},
+		{
+		    "type": "archive",
+		    "url":"https://github.com/OpenRCT2/objects/releases/download/v1.0.12/objects.zip",
+		    "sha256":"95b4648712f986e0219d43bb5400357b4bcf9e045b04dba561fc5be3e25e081b",
+		    "strip-components": 0,
+		    "dest-filename":"./data/objects.zip"
+		},
+		{
+		    "type": "archive",
+		    "url":  "https://github.com/OpenRCT2/title-sequences/releases/download/v0.1.2c/title-sequences.zip",
+		    "sha256":"5284333fa501270835b5f0cf420cb52155742335f5658d7889ea35d136b52517",
+		    "strip-components": 0
 		}
 	    ]
 
